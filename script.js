@@ -82,15 +82,16 @@ document.querySelectorAll(".operatorBtn").forEach(btn => btn.addEventListener('c
     selectedOperator = btn.value;
 }));
 
-// TODO: event listener for C
+// event listener for C
 document.querySelector("#clearBtn").addEventListener('click', () => {
-    if (valueB && selectedOperator){
-        //call operation function
-        operate(selectedOperator, Number(valueA), Number(valueB));
-    }
+    valueA = 0;
+    valueB = null;
+    selectedOperator = null;
+    ongoingCalc = false;
+    display.textContent = valueA;
 });
 
-// TODO: event listener for equals
+// event listener for equals
 document.querySelector("#equalsBtn").addEventListener('click', () => {
     if (valueB && selectedOperator){
         //call operation function
