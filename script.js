@@ -99,3 +99,15 @@ document.querySelector("#equalsBtn").addEventListener('click', () => {
         selectedOperator = null;
     }
 });
+
+//event listener for +/-
+document.querySelector("#reverseBtn").addEventListener('click', () => {
+    if (display.textContent == valueA) {
+        valueA = valueA * -1;
+        display.textContent = valueA;
+    }
+    else if (display.textContent === valueB) {
+        valueB = valueB * -1;
+        display.textContent = valueB;
+    }
+})
