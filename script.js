@@ -110,4 +110,16 @@ document.querySelector("#reverseBtn").addEventListener('click', () => {
         valueB = valueB * -1;
         display.textContent = valueB;
     }
-})
+});
+
+//event listener for decimal point
+document.querySelector("#pointBtn").addEventListener('click', () => {
+    if (display.textContent == valueA) {
+        if (display.textContent.indexOf(".") == -1) {      
+            valueA += ".";
+            display.textContent = valueA;}}
+    else if (display.textContent == valueB) {
+        if (display.textContent.indexOf(".") == -1) {      
+            valueB += ".";
+            display.textContent = valueB;}}
+});
