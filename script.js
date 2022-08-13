@@ -21,6 +21,14 @@ function operate(operator, a, b) {
         ongoingCalc = true;
     }
     else if (operator === "/") {
+        if (valueB == 0) {
+            display.textContent = "Naughty!";
+            valueA = 0;
+            valueB = null;
+            selectedOperator = null;
+            ongoingCalc = false;        
+            return;
+        }
         valueA = a / b;
         valueA = limitCheck(valueA);
         display.textContent = valueA; 
@@ -154,3 +162,4 @@ document.querySelector("#pointBtn").addEventListener('click', () => {
             valueB += ".";
             display.textContent = valueB;}}
 });
+
