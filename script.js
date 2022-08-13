@@ -15,24 +15,28 @@ let ongoingCalc = false;
 function operate(operator, a, b) {
     if (operator === "*") {
         valueA = a * b;
+        valueA = limitCheck(valueA);
         display.textContent = valueA;
         valueB = null;
         ongoingCalc = true;
     }
     else if (operator === "/") {
         valueA = a / b;
+        valueA = limitCheck(valueA);
         display.textContent = valueA; 
         valueB = null;
         ongoingCalc = true;
     }
     else if (operator === "+") {
         valueA = a + b;
+        valueA = limitCheck(valueA);
         display.textContent = valueA;
         valueB = null;
         ongoingCalc = true;
     }
     else {
         valueA = a - b;
+        valueA = limitCheck(valueA);
         display.textContent = valueA;
         valueB = null;
         ongoingCalc = true;
@@ -54,6 +58,7 @@ function enterNumber(num) {
     }
     else if (selectedOperator === null) {
         valueA += num;
+        valueA = limitCheck(valueA);
         display.textContent = valueA;
     }
     else if (selectedOperator !== null && valueB === null) {
@@ -62,12 +67,38 @@ function enterNumber(num) {
     }
     else {
         valueB += num;
+        valueB = limitCheck(valueB);
         display.textContent = valueB;
+    }
+}
+
+//function that checks for display limit.
+function limitCheck(value) {
+    index = value.toString().indexOf(".");
+    if (value > 9999999999) {
+        return 9999999999;
+    }
+    else if (value < -999999999) {
+        return -999999999;
+    }
+    else if (index != -1 && value.toString().length > 9) {
+        if (index > 9) {
+            index = 9;
+        }
+        value = Number(value);
+        return value.toFixed(9 - index);
+    }
+    else {
+        return value;
     }
 }
 
 // event listeners for number buttons
 document.querySelectorAll(".numberBtn").forEach(btn => btn.addEventListener('click', () => {
+    if (display.textContent.length >= 10 && selectedOperator === null || 
+        display.textContent.length >= 10 && valueB) {
+        return;
+    }
     enterNumber(btn.textContent);
 }));
 
