@@ -161,5 +161,8 @@ document.querySelector("#pointBtn").addEventListener('click', () => {
         if (display.textContent.indexOf(".") == -1) {      
             valueB += ".";
             display.textContent = valueB;}}
+    audio.play();
 });
 
+// clicking sound
+let audio = new Audio("./tink.wav");
