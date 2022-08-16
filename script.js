@@ -108,6 +108,8 @@ document.querySelectorAll(".numberBtn").forEach(btn => btn.addEventListener('cli
         return;
     }
     enterNumber(btn.textContent);
+    audio.currentTime = 0;
+    audio.play();
 }));
 
 // event listeners for operators
@@ -119,6 +121,8 @@ document.querySelectorAll(".operatorBtn").forEach(btn => btn.addEventListener('c
     }
     //update selectedOperator
     selectedOperator = btn.value;
+    audio.currentTime = 0;
+    audio.play();
 }));
 
 // event listener for C
@@ -128,6 +132,8 @@ document.querySelector("#clearBtn").addEventListener('click', () => {
     selectedOperator = null;
     ongoingCalc = false;
     display.textContent = valueA;
+    audio.currentTime = 0;
+    audio.play();
 });
 
 // event listener for equals
@@ -136,6 +142,8 @@ document.querySelector("#equalsBtn").addEventListener('click', () => {
         //call operation function
         operate(selectedOperator, Number(valueA), Number(valueB));
         selectedOperator = null;
+        audio.currentTime = 0;
+        audio.play();
     }
 });
 
@@ -144,10 +152,14 @@ document.querySelector("#reverseBtn").addEventListener('click', () => {
     if (display.textContent == valueA) {
         valueA = valueA * -1;
         display.textContent = valueA;
+        audio.currentTime = 0;
+        audio.play();
     }
     else if (display.textContent === valueB) {
         valueB = valueB * -1;
         display.textContent = valueB;
+        audio.currentTime = 0;
+        audio.play();
     }
 });
 
@@ -161,6 +173,7 @@ document.querySelector("#pointBtn").addEventListener('click', () => {
         if (display.textContent.indexOf(".") == -1) {      
             valueB += ".";
             display.textContent = valueB;}}
+    audio.currentTime = 0;
     audio.play();
 });
 
